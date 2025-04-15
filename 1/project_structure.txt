@@ -1,0 +1,33 @@
+Project Structure:
+
+/finalproject
+├── assets/
+│   ├── css/
+│   │   ├── style.css (Main stylesheet)
+│   │   └── darkmode.css (Dark mode stylesheet - unique feature)
+│   ├── js/
+│   │   ├── register.js (Registration functionality)
+│   │   ├── login.js (Authentication functionality)
+│   │   ├── attendance.js (Attendance code generation and verification)
+│   │   ├── teacher.js (Teacher dashboard functionality)
+│   │   ├── student.js (Student dashboard functionality)
+│   │   └── darkmode.js (Dark mode toggle functionality - unique feature)
+│   └── img/
+│       ├── logo.png
+│       └── icons/
+├── includes/
+│   ├── config.php (Database configuration)
+│   ├── db.php (Database connection)
+│   ├── functions.php (Common functions)
+│   ├── header.php (Common header)
+│   ├── footer.php (Common footer)
+│   └── auth.php (Authentication functions)
+├── database/
+│   └── schema.sql (Database schema)
+├── register.php (User registration)
+├── login.php (User login)
+├── index.php (Landing page)
+├── admin.php (Teacher dashboard)
+├── student.php (Student dashboard)
+├── logout.php (Logout functionality)
+└── report.php (PDF report generation - unique feature)
