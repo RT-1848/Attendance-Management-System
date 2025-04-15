@@ -1,0 +1,49 @@
+Registration Page:
+    Login as Teacher 
+    Login as Student 
+
+Database:
+    Registration Table
+        One table for students
+        One table for teachers 
+    Class Table
+    Per Class Table:
+        List of Students in each class
+            Student Attending (Null until changed by teacher marking or student inputs code)
+            Column for Date -- Can search by date 
+
+            Example: Class Table (CSCI4410)
+                Marcos, 04/05/25, Attendance(Null)
+                Marcos, 04/06/25, Attendance(True)
+
+            Student Side:
+                Student Searches per class by name and date
+                To View total percentage, Add instances of true / true + null 
+
+
+
+register.php
+admin.php - teacher side 
+student.php - student side
+
+register.js - code generator 
+attendance.js - daily attendance code 
+
+
+Marking Student Attendance
+    Teacher View - Select Student, Modify Attendance (Similar to OLA6) 
+
+
+ View Live Attendance
+    Teacher View - Similar to OLA6 Ex: View All students, view calendar date, show only absent students, show attending students 
+    Student View - See if they are attending that day, view attendance percentage per class 
+
+Generate Attendance Report
+    Attending students / Total Students 
+    List of Attending Students, List of Absent Students (Per Day) 
+    Optional: Students with less than 3 Absences 
+
+UI:
+    Similar to D2L
+        List Classes - Students select class and redirected to input code, teacher see attendance functionality
+        Optional Teacher Functionality - Add Class (Generate New table)
