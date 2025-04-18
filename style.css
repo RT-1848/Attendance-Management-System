@@ -1,0 +1,647 @@
+/*  margin, padding, and box-sizing for all elements */
+* {
+    margin: 0; /* Removes default margin from all elements */
+    padding: 0; /* Removes default padding from all elements */
+    box-sizing: border-box; /* Ensures that padding and borders are included in the element's total width and height */
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif; /* Sets a clean, sans-serif font */
+    background-color: ghostwhite; /* Light background color for the page */
+    line-height: 1.6; /* Increases line height for better readability */
+}
+
+/* Container for layout */
+.container {
+    max-width: 1200px; /* Limits the container width to 1200px */
+    margin: 0 auto; /* Centers the container horizontally */
+    padding: 24px; /* Adds padding inside the container */
+}
+
+/* Login and Register form styling */
+.login-form, .register-form {
+    max-width: 400px; /* Limits the width of the form */
+    margin: 50px auto; /* Centers the form and adds top and bottom space */
+    padding: 20px; /* Adds padding inside the form */
+    background: white; /* White background for the form */
+    border-radius: 5px; /* Rounds the corners of the form */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adds a subtle shadow around the form */
+}
+
+/* Header for form */
+h2 {
+    text-align: center; /* Centers the header text */
+    margin-bottom: 20px; /* Adds space below the header */
+    color: #333; /* Dark text color for the header */
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 15px; /* Adds space below each form group */
+}
+
+/* Label styling */
+label {
+    display: block; /* Makes labels block-level for better layout */
+    margin-bottom: 5px; /* Adds space below the label */
+    color: #555; /* Medium gray text color for labels */
+}
+
+/* Input and select fields styling */
+input, select {
+    width: 100%; /* Makes input/select fields fill the available width */
+    padding: 10px; /* Adds space inside the fields */
+    border: 1px solid #ddd; /* Light gray border for the fields */
+    border-radius: 4px; /* Rounds the corners of the fields */
+    font-size: 16px; /* Sets the font size inside the fields */
+}
+
+/* Button styling */
+button {
+    width: 100%; /* Makes the button fill the width of the container */
+    padding: 10px; /* Adds space inside the button */
+    background-color: #4CAF50; /* Green background color for the button */
+    color: white; /* White text color for the button */
+    border: none; /* Removes the default border */
+    border-radius: 4px; /* Rounds the corners of the button */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+    font-size: 16px; /* Sets the font size inside the button */
+}
+
+/* Hover effect for buttons */
+button:hover {
+    background-color: #45a049; /* Darkens the button background on hover */
+}
+
+/* Error message styling */
+.error {
+    color: #ff0000; /* Red text color for error messages */
+    margin-bottom: 15px; /* Adds space below the error message */
+    padding: 10px; /* Adds padding inside the error box */
+    background-color: #ffebee; /* Light red background for the error message */
+    border-radius: 4px; /* Rounds the corners of the error box */
+}
+
+/* Link styling */
+a {
+    color: #4CAF50; /* Green color for links */
+    text-decoration: none; /* Removes underline from links */
+}
+
+/* Hover effect for links */
+a:hover {
+    text-decoration: underline; /* Underlines the link when hovered */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Navigation menu styling */
+.nav-menu {
+    display: flex; /* Uses flexbox for horizontal layout */
+    gap: 12px; /* Adds space between the buttons */
+    margin-bottom: 24px; /* Adds space below the menu */
+}
+
+/* Navigation button styling */
+.nav-button {
+    padding: 10px 18px; /* Adds padding inside the button */
+    background-color: #3a86ff; /* Blue background color for the button */
+    color: white; /* White text color */
+    border-radius: 6px; /* Rounds the corners of the button */
+    text-decoration: none; /* Removes the underline */
+    font-weight: 500; /* Makes the text weight slightly bold */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Adds smooth transitions */
+}
+
+/* Hover effect for navigation buttons */
+.nav-button:hover {
+    background-color: #2f6cd8; /* Darkens the button background on hover */
+    transform: translateY(-2px); /* Lifts the button slightly on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dashboard layout styles */
+.dashboard {
+    display: grid; /* Uses grid layout */
+    grid-template-columns: 250px 1fr; /* Sidebar is 250px wide, main content takes the rest */
+    gap: 20px; /* Adds space between the grid items */
+}
+
+/* Dashboard header styling */
+.dashboard-header {
+    margin-bottom: 32px; /* Adds space below the header */
+    display: flex; /* Uses flexbox for layout */
+    justify-content: space-between; /* Distributes space between header items */
+    align-items: center; /* Vertically aligns items in the center */
+    padding: 16px; /* Adds padding inside the header */
+    background: white; /* White background for the header */
+    border-radius: 8px; /* Rounds the corners of the header */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Adds a soft shadow around the header */
+}
+
+
+/* Dashboard title styling */
+.dashboard-title {
+    margin: 0px; /* Removes default margin */
+    font-size: 2rem; /* Sets a larger font size for the dashboard title */
+    color: #202020; /* Dark gray color for the title */
+    text-align: center; /* Centers the text horizontally */
+    width: 100%; /* Ensures the title takes up the full width */
+    display: flex; /* Allows flexbox layout */
+    justify-content: center; /* Centers the title horizontally within the container */
+    align-items: center; /* Centers the title vertically within the container (if the container has a height) */
+}
+
+/* Course link styling */
+.course-link {
+    color: #006fbf; /* Blue color for course links */
+    text-decoration: none; /* Removes underline from the link */
+    font-weight: 500; /* Makes the text weight slightly bold */
+}
+
+/* Hover effect for course links */
+.course-link:hover {
+    text-decoration: underline; /* Underlines the link on hover */
+}
+
+/* Class list container */
+.class-list {
+    display: grid; /* Uses grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Automatically adjusts the number of columns */
+    gap: 20px; /* Adds space between class cards */
+}
+
+/* Class card styling */
+.class-card {
+    background: white; /* White background for the card */
+    padding: 20px; /* Adds space inside the card */
+    border-radius: 5px; /* Rounds the corners of the card */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adds a subtle shadow around the card */
+}
+
+/* Class card title */
+.class-card h3 {
+    margin-bottom: 10px; /* Adds space below the title */
+}
+
+/* Class code styling */
+.class-code {
+    font-family: monospace; /* Uses monospace font for the code */
+    background: #f0f0f0; /* Light gray background for the class code */
+    padding: 5px 10px; /* Adds space inside the class code box */
+    border-radius: 4px; /* Rounds the corners of the box */
+    display: inline-block; /* Makes it inline-block to stay next to text */
+    margin: 10px 0; /* Adds space around the code */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dashboard - Course Cards layout */
+
+
+.courses-grid {
+    display: grid; /* Uses grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Automatically adjusts columns */
+    gap: 24px; /* Adds space between the course cards */
+    padding: 20px 0; /* Adds vertical padding around the grid */
+}
+
+/* Individual course card */
+.course-card {
+    background: whitesmoke; /* White background */
+    border-radius: 10px; /* Rounds the corners of the card */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Deeper shadow for the card */
+    overflow: hidden; /* Hides content overflowing the card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect for course cards */
+.course-card:hover {
+    transform: translateY(-5px); /* Lifts the card on hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Increases shadow on hover */
+}
+
+/* Gradient banner styles for different course sections */
+.course-banner-gradient-1 {
+    height: 140px; /* Sets the height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #ff6b6b, #f06595); /* Red-pink gradient */
+}
+
+.course-banner-gradient-2 {
+    height: 140px; /* Sets the height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #1dd1a1, #10ac84); /* Teal-green gradient */
+}
+
+.course-banner-gradient-3 {
+    height: 140px; /* Sets the height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #5f27cd, #341f97); /* Purple-indigo gradient */
+}
+
+.course-banner-gradient-4 {
+    height: 140px; /* Sets the height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #ff9f43, #ff6b01); /* Orange-amber gradient */
+}
+
+.course-banner-gradient-5 {
+    height: 140px; /* Sets the height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #54a0ff, #2e86de); /* Blue-sky gradient */
+}
+
+/* Container for course content */
+.course-content {
+    padding: 20px; /* Adds padding inside the content container */
+}
+
+/* Course name styling */
+.course-name {
+    font-size: 1.25rem; /* Sets font size for course name */
+    font-weight: bold; /* Makes the course name bold */
+    margin-bottom: 8px; /* Adds space below the course name */
+}
+
+/* Course code styling */
+.course-code {
+    font-size: 0.9rem; /* Sets font size for course code */
+    background-color: #f1f1f1; /* Light gray background for course code */
+    padding: 6px 10px; /* Adds padding inside the course code box */
+    border-radius: 4px; /* Rounds the corners of the course code box */
+    display: inline-block; /* Makes the course code display inline with other content */
+    color: #333; /* Dark text color for course code */
+    margin-bottom: 16px; /* Adds space below the course code */
+}
+
+/* Meta information section (such as instructor or semester) */
+.course-meta {
+    margin-top: auto; /* Ensures the meta section is pushed to the bottom */
+    text-align: right; /* Aligns the meta text to the right */
+}
+
+/* Course link button styling */
+.course-link {
+    display: inline-block; /* Makes the link display inline with other elements */
+    padding: 10px 18px; /* Adds padding inside the link button */
+    background-color: #3a86ff; /* Blue background color for the button */
+    color: white; /* White text color for the link */
+    text-decoration: none; /* Removes the underline from the link */
+    border-radius: 6px; /* Rounds the corners of the button */
+    font-weight: 500; /* Makes the font weight slightly bold */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+/* Hover effect for course link button */
+.course-link:hover {
+    background-color: #2f6cd8; /* Darkens the background color on hover */
+    text-decoration: none; /* Ensures the text stays without underline on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Class Details Page for Teacher */ 
+
+.class-details {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #00205B; /* MTSU True Blue vibe */
+}
+
+.class-code {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Left - Code box */
+.attendance-section {
+    flex: 1;
+    background-color: #e6f0ff;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 300px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+
+.students-section {
+    margin-top: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.students-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.students-section th,
+.students-section td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+
+.toggle-button {
+    margin: 20 10px;
+    padding: 10px 20px;
+    background-color: #0057B8;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+/* View toggle buttons styling */
+.view-toggle {
+    margin: 20px 0; /* Adds space above and below the toggle */
+    text-align: center; /* Centers the toggle buttons */
+    display: flex; /* Uses flexbox for horizontal layout */
+    gap: 10px; /* Adds space between the buttons */
+    justify-content: center; /* Centers the toggle buttons */
+}
+
+
+#generateCodeButton {
+    background-color: #00205B; /* MTSU True Blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#generateCodeButton:hover {
+    background-color: #0057B8; /* Hover color */
+}
+
+#backToDashboardLink {
+    color:#00205B;
+    text-decoration: none; /* Removes underline */
+    font-size: 16px;
+    bottom: 1px; /* Position the link 20px from the bottom */
+    transition: background-color 0.3s ease;
+}
+
+#backToDashboardLink:hover {
+    color: #0057B8; /* Hover color */
+}
+
+
+
+
+
+
+/* Chart container styling */
+.chart-container {
+    margin: 20px 0; /* Adds space above and below the chart */
+    padding: 20px; /* Adds padding inside the chart container */
+    background: white; /* White background for the chart container */
+    border-radius: 8px; /* Rounds the corners of the container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow around the container */
+    height: 400px; /* Sets a fixed height for the chart */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Join Class Page Updated CSS */
+
+#joinClassPage {
+    padding: 40px 20px;
+    background-color: #f4f8ff;
+    background: linear-gradient(to bottom right, #e6f0ff, #ffffff);
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+#joinClassTitle {
+    text-align: center;
+    font-size: 32px;
+    color: #00205B;
+    margin-bottom: 40px;
+}
+
+#joinClassLayout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+
+#joinClassForm {
+    flex: 2;
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(3px);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    text-align: left;
+}
+
+#joinClassBtn {
+    background-color: #00205B;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px;
+}
+
+#joinClassBtn:hover {
+    background-color: #001a4d;
+    transform: translateY(-2px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*New page for students to view attendance */ 
+
+
+.class-details-student {
+    text-align: center;
+}
+
+.class-details-student h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.class-details-student p {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+.attendance-summary {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #eef3fa;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.attendance-summary p {
+    font-weight: 500;
+    color: #34495e;
+}
+
+.attendance-dates {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.attendance-dates h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.attendance-dates ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.attendance-dates li {
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    background: #f0f4f9;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #2d3436;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 20px;
+    background: #3498db;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #2980b9;
+}
