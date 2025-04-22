@@ -1,0 +1,119 @@
+<?php
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.php?page=login');
+    exit();
+}
+
+$userId = $_SESSION['user_id'];
+$userRole = $_SESSION['role'];
+
+// Get classes based on user role
+if ($userRole === 'teacher') {
+    $query = "SELECT * FROM classes WHERE teacher_id = $userId";
+    $result = mysqli_query($conn, $query);
+    $classes = mysqli_fetch_all($result, MYSQLI_ASSOC);
+} else {
+    $query = "SELECT c.* FROM classes c
+              JOIN class_enrollments ce ON c.id = ce.class_id
+              WHERE ce.student_id = $userId";
+    $result = mysqli_query($conn, $query);
+    $classes = mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+$query = "SELECT username FROM users WHERE id = $userId";
+$result = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($result);
+$userName = $user['username'];
+
+?>
+
+<?php
+// Generate a random number between 1 and 5
+$randomNumber = rand(1, 5);
+// Dynamically create the class name based on the random number
+$selectedGradientClass = "course-banner-gradient-" . $randomNumber;
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Courses - Attendance Tracker</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title"> <?php echo htmlspecialchars($userName); ?>'s Courses</h1>
+        </div>
+
+        <!-- Navigation menu -->
+        <div class="nav-menu">
+            <?php if ($userRole === 'teacher'): ?>
+                <a href="index.php?page=create_class" class="nav-button">Create Class</a>
+            <?php else: ?>
+                <a href="index.php?page=join_class" class="nav-button">Join Class</a>
+            <?php endif; ?>
+            <a href="index.php?page=logout" class="nav-button">Logout</a>
+        </div>
+
+        <!-- Courses grid -->
+        <div class="courses-grid">
+            <?php foreach ($classes as $class): ?>
+                <div class="course-card">
+                   <div class="<?php echo $selectedGradientClass; ?>"></div>
+                    <div class="course-content">
+                        <h3 class="course-name"><?php echo htmlspecialchars($class['class_name']); ?></h3>
+                        <div class="course-code">Class Code: <?php echo htmlspecialchars($class['class_code']); ?></div>
+                        <div class="course-meta">
+                            <?php if ($userRole === 'teacher'): ?>
+                                <a href="index.php?page=class_details&id=<?php echo $class['id']; ?>" class="course-link">View Details</a>
+                                <form method="post">
+                                <input type="hidden" name="class_id" value="<?php echo $class['id']; ?>">
+                                <button type="submit" name="end" class="course-link" style="margin-top: 2px;">End Class</button>
+                                </form>
+                            <?php else: ?>
+                                <a href="index.php?page=mark_attendance&class_id=<?php echo $class['id']; ?>" class="course-link">Mark Attendance</a>
+                                <a href="index.php?page=class_details_student&id=<?php echo $class['id']; ?>" class="course-link">View Details</a>
+                                <form method="post">
+                                <input type="hidden" name="class_id" value="<?php echo $class['id']; ?>">
+                                <button type="submit" name="drop" class="course-link" style="margin-top: 2px;">Drop Class</button>
+                                </form>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</body>
+</html> 
+<?php
+    if ($_SERVER['REQUEST_METHOD']==="POST" && isset($_POST['drop'])) {
+        $classid = $_POST["class_id"];
+        $drop_query = "DELETE FROM class_enrollments WHERE class_id = $classid AND student_id = $userId";
+        $result = mysqli_query($conn, $drop_query);
+        if ($result) {
+            header("Location: index.php?page=dashboard");
+            exit;
+        }
+        //echo"<h1>Done</h1>";
+    }
+    else if($_SERVER['REQUEST_METHOD']==="POST" && isset($_POST['end'])){
+        $classid = $_POST["class_id"];
+        $end_query = "DELETE FROM class_enrollments WHERE class_id = $classid";
+        $result = mysqli_query($conn, $end_query);
+        $end_query1 = "DELETE FROM attendance_records WHERE class_id = $classid";
+        $result = mysqli_query($conn, $end_query1);
+        $end_query2 = "DELETE FROM attendance_codes WHERE class_id = $classid";
+        $result = mysqli_query($conn, $end_query2);
+        $end_query3 = "DELETE FROM classes WHERE id = $classid";
+        $result = mysqli_query($conn, $end_query3);
+        if ($result) {
+            header("Location: index.php?page=dashboard");
+            exit;
+        }
+    }
+?>
