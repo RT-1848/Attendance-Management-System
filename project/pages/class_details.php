@@ -104,7 +104,7 @@ $showChart = isset($_GET['view']) && $_GET['view'] === 'chart';
 <body>
     <div class="container">
         <div class="class-details">
-            <h2><?php echo htmlspecialchars($class['class_name']); ?></h2>
+            <h2>Class Details - <?php echo htmlspecialchars($class['class_name']); ?></h2>
             <div class="class-code">Class Code: <?php echo htmlspecialchars($class['class_code']); ?></div>
             
             <?php if (isset($error)): ?>
@@ -117,11 +117,66 @@ $showChart = isset($_GET['view']) && $_GET['view'] === 'chart';
             <div class="attendance-section">
                 <h3>Generate Attendance Code</h3>
                 <form method="POST" action="">
-                    <button type="submit" name="generate_code">Generate Today's Code</button>
+                    <button type="submit" name="generate_code" id="generateCodeButton" >Generate Today's Code</button>
                 </form>
             </div>
             
-            <div class="view-toggle">
+            <?php if ($showChart): ?>
+                <div class="chart-container">
+                    <canvas id="attendanceChart" data-chart='<?php echo json_encode($chartData); ?>'></canvas>
+                </div>
+                <script src="assets/js/attendance-chart.js"></script>
+            <?php else: ?>
+                <div class="students-section">
+                    <h3>Enrolled Students</h3>
+                    <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>
+                        <?php if ($showPercentages): ?>
+                            Attendance Percentage
+                        <?php else: ?>
+                            Attendance Dates
+                        <?php endif; ?>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($students as $student): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($student['username']); ?></td>
+                        <td>
+                            <?php if ($showPercentages): ?>
+                                <?php
+                                if ($totalDays > 0) {
+                                    $percentage = ($student['present_days'] / $totalDays) * 100;
+                                    echo number_format($percentage, 1) . '%';
+                                } else {
+                                    echo 'No attendance recorded';
+                                }
+                                ?>
+                            <?php else: ?>
+                                <?php 
+                                if (!empty($student['attendance_dates'])) {
+                                    $dates = explode(',', $student['attendance_dates']);
+                                    foreach ($dates as $date) {
+                                        echo date('F j, Y', strtotime($date)) . '<br>';
+                                    }
+                                } else {
+                                    echo 'No attendance recorded';
+                                }
+                                ?>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+            <?php endif; ?>
+
+               <div class="view-toggle">
                 <a href="index.php?page=class_details&id=<?php echo $classId; ?>&view=details" 
                    class="toggle-button <?php echo !$showPercentages && !$showChart ? 'active' : ''; ?>">
                     Show Detailed View
@@ -135,63 +190,9 @@ $showChart = isset($_GET['view']) && $_GET['view'] === 'chart';
                     Show Chart View
                 </a>
             </div>
+
             
-            <?php if ($showChart): ?>
-                <div class="chart-container">
-                    <canvas id="attendanceChart" data-chart='<?php echo json_encode($chartData); ?>'></canvas>
-                </div>
-                <script src="assets/js/attendance-chart.js"></script>
-            <?php else: ?>
-                <div class="students-section">
-                    <h3>Enrolled Students</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Student Name</th>
-                                <th>
-                                    <?php if ($showPercentages): ?>
-                                        Attendance Percentage
-                                    <?php else: ?>
-                                        Attendance Dates
-                                    <?php endif; ?>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($students as $student): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($student['username']); ?></td>
-                                    <td>
-                                        <?php if ($showPercentages): ?>
-                                            <?php
-                                            if ($totalDays > 0) {
-                                                $percentage = ($student['present_days'] / $totalDays) * 100;
-                                                echo number_format($percentage, 1) . '%';
-                                            } else {
-                                                echo 'No attendance recorded';
-                                            }
-                                            ?>
-                                        <?php else: ?>
-                                            <?php 
-                                            if (!empty($student['attendance_dates'])) {
-                                                $dates = explode(',', $student['attendance_dates']);
-                                                foreach ($dates as $date) {
-                                                    echo date('F j, Y', strtotime($date)) . '<br>';
-                                                }
-                                            } else {
-                                                echo 'No attendance recorded';
-                                            }
-                                            ?>
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            <?php endif; ?>
-            
-            <p><a href="index.php?page=dashboard">Back to Dashboard</a></p>
+            <p><a href="index.php?page=dashboard" id="backToDashboardLink">Back to Dashboard</a></p>
         </div>
     </div>
 </body>

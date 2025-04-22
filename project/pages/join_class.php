@@ -50,23 +50,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="join-class-form">
-            <h2>Join a Class</h2>
-            <?php if (isset($error)): ?>
-                <div class="error"><?php echo $error; ?></div>
-            <?php endif; ?>
-            <?php if (isset($success)): ?>
-                <div class="success"><?php echo $success; ?></div>
-            <?php endif; ?>
-            <form method="POST" action="">
-                <div class="form-group">
-                    <label for="class_code">Class Code</label>
-                    <input type="text" id="class_code" name="class_code" required>
-                </div>
-                <button type="submit">Join Class</button>
-            </form>
-            <p><a href="index.php?page=dashboard">Back to Dashboard</a></p>
+    <div id="joinClassPage">
+        <h1 id="joinClassTitle">Join Class</h1>
+        
+        <div id="joinClassLayout">
+            <div id="joinClassForm">
+                <?php if (isset($error)): ?>
+                    <div class="error"><?php echo $error; ?></div>
+                <?php endif; ?>
+                <?php if (isset($success)): ?>
+                    <div class="success"><?php echo $success; ?></div>
+                <?php endif; ?>
+
+                <form method="POST" action="">
+                    <div id="formGroup">
+                        <label for="class_code">Class Code</label>
+                        <input type="text" id="class_code" name="class_code" required>
+                    </div>
+                    <button id="joinClassBtn" type="submit">Join Class</button>
+                </form>
+
+                <p><a id="backToDashboardLink" href="index.php?page=dashboard">Back to Dashboard</a></p>
+            </div>
         </div>
     </div>
 </body>
