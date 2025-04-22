@@ -21,11 +21,11 @@ if ($userRole === 'teacher') {
     $classes = mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
-$query = "SELECT * FROM users WHERE id = $userId";
+$query = "SELECT username FROM users WHERE id = $userId";
 $result = mysqli_query($conn, $query);
 $user = mysqli_fetch_assoc($result);
 $userName = $user['username'];
-$firstName = $user['first_name'];
+
 ?>
 
 <?php
@@ -46,10 +46,7 @@ $selectedGradientClass = "course-banner-gradient-" . $randomNumber;
 <body>
     <div class="container">
         <div class="dashboard-header">
-            <h1 class="dashboard-title"> 
-                <img src="assets/pictures/mt-logo.png" width="50px" height="30px"> 
-                <?php echo htmlspecialchars($firstName); ?>'s Courses
-            </h1>
+            <h1 class="dashboard-title"> <?php echo htmlspecialchars($userName); ?>'s Courses</h1>
         </div>
 
         <!-- Navigation menu -->
