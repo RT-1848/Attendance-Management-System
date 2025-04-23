@@ -54,16 +54,16 @@ $result = mysqli_query($conn, $query);
 $totalDays = mysqli_fetch_assoc($result)['total_days'];
 
 // Get enrolled students with their attendance records
-$query = "SELECT u.id, u.username, 
-          GROUP_CONCAT(DISTINCT ac.date ORDER BY ac.date DESC) as attendance_dates,
+$query = "SELECT u.id, u.first_name, u.last_name,
+          GROUP_CONCAT(ac.date ORDER BY ac.date DESC SEPARATOR ', ') as attendance_dates,
           COUNT(DISTINCT ac.date) as present_days
           FROM users u
           JOIN class_enrollments ce ON u.id = ce.student_id
           LEFT JOIN attendance_records ar ON u.id = ar.student_id AND ar.class_id = $classId
           LEFT JOIN attendance_codes ac ON ar.attendance_code_id = ac.id
           WHERE ce.class_id = $classId
-          GROUP BY u.id, u.username
-          ORDER BY u.username";
+          GROUP BY u.id, u.first_name, u.last_name
+          ORDER BY u.last_name";
 $result = mysqli_query($conn, $query);
 $students = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -72,7 +72,7 @@ $chartData = [];
 foreach ($students as $student) {
     $percentage = $totalDays > 0 ? ($student['present_days'] / $totalDays) * 100 : 0;
     $chartData[] = [
-        'student' => $student['username'],
+        'student' => $student['last_name'] .", ".$student['first_name'] ,
         'percentage' => $percentage
     ];
 }
@@ -154,7 +154,7 @@ $showChart = isset($_GET['view']) && $_GET['view'] === 'chart';
             <tbody>
                 <?php foreach ($students as $student): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($student['username']); ?></td>
+                        <td><?php echo htmlspecialchars($student['first_name']. " " . $student['last_name']); ?></td>
                         <td>
                             <?php if ($showPercentages): ?>
                                 <?php
