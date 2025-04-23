@@ -6,11 +6,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = $_POST['password'];
     $role = mysqli_real_escape_string($conn, $_POST['role']);
-    
+
+    $conditions = [
+        'letter' => [
+            'pattern' => '/[A-Za-z]/',
+            'message' => 'Password must contain at least one letter.'
+        ],
+        'number' => [
+            'pattern' => '/[0-9]/',
+            'message' => 'Password must contain at least one number.'
+        ],
+        'special' => [
+            'pattern' => '/[\W_]/',
+            'message' => 'Password must contain at least one special character.'
+        ]
+    ];
+
+    $valid = true;
+    foreach ($conditions as $key => $rule) {
+        if (!preg_match($rule['pattern'], $password)) {
+            $errorList[$key] = false;
+            $valid = false;
+        } else {
+            $errorList[$key] = true;
+        }
+    }
     // Validate input
-    if (empty($username) || empty($email) || empty($password)) {
+    $error = "";
+    if (empty($username) || empty($email) || empty($password) && $valid) {
         $error = "All fields are required";
-    } else {
+    }
+    else if(!$valid){
+        if (!isset($errorList['letter']) || !$errorList['letter']) {
+            $error .= "Password must contain at least one letter.<br>";
+        }
+        if (!isset($errorList['number']) || !$errorList['number']) {
+            $error .= "Password must contain at least one number.<br>";
+        }
+        if (!isset($errorList['special']) || !$errorList['special']) {
+            $error .= "Password must contain at least one special character.<br>";
+        }
+        if(strlen($password)<8){
+            $error .= "Password must contain at least 8 characters.<br>";
+        }
+    } 
+    else {
         // Check if username or email already exists
         $query = "SELECT id FROM users WHERE username = '$username' OR email = '$email'";
         $result = mysqli_query($conn, $query);
@@ -21,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Create new user
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $query = "INSERT INTO users (first_name, last_name, username, email, password, role) VALUES ('$firstname', '$lastname', '$username', '$email', '$hashedPassword', '$role')";
+            
             
             if (mysqli_query($conn, $query)) {
                 header('Location: index.php?page=login');
