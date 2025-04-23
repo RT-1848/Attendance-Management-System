@@ -41,7 +41,7 @@ if (isset($_POST['generate_code'])) {
                 $error = "Failed to generate attendance code. Please try again.";
             }
         } else {
-            $error = "Attendance code already generated for today.";
+            $error2 = 'Today\'s Code Has Already Been Generated And Is: ';
         }
     } catch (Exception $e) {
         $error = "Failed to generate attendance code. Please try again.";
@@ -54,16 +54,16 @@ $result = mysqli_query($conn, $query);
 $totalDays = mysqli_fetch_assoc($result)['total_days'];
 
 // Get enrolled students with their attendance records
-$query = "SELECT u.id, u.username, 
-          GROUP_CONCAT(DISTINCT ac.date ORDER BY ac.date DESC) as attendance_dates,
+$query = "SELECT u.id, u.first_name, u.last_name,
+          GROUP_CONCAT(ac.date ORDER BY ac.date DESC SEPARATOR ', ') as attendance_dates,
           COUNT(DISTINCT ac.date) as present_days
           FROM users u
           JOIN class_enrollments ce ON u.id = ce.student_id
           LEFT JOIN attendance_records ar ON u.id = ar.student_id AND ar.class_id = $classId
           LEFT JOIN attendance_codes ac ON ar.attendance_code_id = ac.id
           WHERE ce.class_id = $classId
-          GROUP BY u.id, u.username
-          ORDER BY u.username";
+          GROUP BY u.id, u.first_name, u.last_name
+          ORDER BY u.last_name";
 $result = mysqli_query($conn, $query);
 $students = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -72,7 +72,7 @@ $chartData = [];
 foreach ($students as $student) {
     $percentage = $totalDays > 0 ? ($student['present_days'] / $totalDays) * 100 : 0;
     $chartData[] = [
-        'student' => $student['username'],
+        'student' => $student['last_name'] .", ".$student['first_name'] ,
         'percentage' => $percentage
     ];
 }
@@ -107,18 +107,27 @@ $showChart = isset($_GET['view']) && $_GET['view'] === 'chart';
             <h2>Class Details - <?php echo htmlspecialchars($class['class_name']); ?></h2>
             <div class="class-code">Class Code: <?php echo htmlspecialchars($class['class_code']); ?></div>
             
-            <?php if (isset($error)): ?>
-                <div class="error"><?php echo $error; ?></div>
-            <?php endif; ?>
-            <?php if (isset($success)): ?>
-                <div class="success"><?php echo $success; ?></div>
-            <?php endif; ?>
+            <?php
+                if (isset($error2)) {
+                    $today = date('Y-m-d');
+                    $query = "SELECT code FROM attendance_codes WHERE class_id = $classId AND date = '$today'";
+                    $result = mysqli_query($conn, $query);
+                    $row = mysqli_fetch_assoc($result);  // fetch as an associative array
+                    $code = $row['code'];
+                    echo '<div class="success">' . $error2 . $code .'</div>';
+                } elseif (isset($success)) {
+                    echo '<div class="success">' . $success . '</div>';
+                } elseif (isset($error)) {
+                    echo '<div class="error">' . $error . '</div>';
+                }
+            ?>
             
             <div class="attendance-section">
                 <h3>Generate Attendance Code</h3>
                 <form method="POST" action="">
                     <button type="submit" name="generate_code" id="generateCodeButton" >Generate Today's Code</button>
                 </form>
+
             </div>
             
             <?php if ($showChart): ?>
@@ -145,7 +154,7 @@ $showChart = isset($_GET['view']) && $_GET['view'] === 'chart';
             <tbody>
                 <?php foreach ($students as $student): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($student['username']); ?></td>
+                        <td><?php echo htmlspecialchars($student['first_name']. " " . $student['last_name']); ?></td>
                         <td>
                             <?php if ($showPercentages): ?>
                                 <?php
