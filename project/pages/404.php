@@ -1,3 +1,4 @@
+<!-- simple 404 incase the user tries to access a diffrent page that doesn't exist-->
 <!DOCTYPE html>
 <html lang="en">
 <head>

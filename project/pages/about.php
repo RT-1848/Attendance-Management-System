@@ -7,37 +7,30 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <div class="information-container">
-        <h1><u>Welcome to the Attendance Management System!</u></h1>
-        <ul>
-            <li>Effortlessly mark attendance or create classes with just a few clicks.</li>
-            <li>Our system removes the hassle of manual tracking, reducing errors and improving accuracy.</li>
-            <li>Generate detailed reports, review attendance history, and monitor overall patterns with ease.</li>
-            <li>Designed with simplicity in mind, our user-friendly interface ensures a smooth experience for everyone.</li>
-        </ul>
-    </div>
-    <div class="teacher-container">
-        <h1>Teacher Features:</h1>
-        <ul>
-            <li>Create and manage classes effortlessly.</li>
-            <li>View real-time student attendance updates.</li>
-            <li>Generate comprehensive attendance reports.</li>
-            <li>Manually mark students as present from the available list.</li>
-            <li>Create and distribute unique class codes for students to join.</li>
-        </ul>
-    </div>
-    <div class="student-container">
-        <h1>Student Features:</h1>
-        <ul>
-            <li>Join classes using a unique code provided by your teacher.</li>
-            <li>Access and view all your enrolled classes from a simple dashboard.</li>
-            <li>Mark yourself as present in the class.</li>
-            <li>Track your attendance percentage for each class in real time.</li>
-        </ul>
-    </div>
     <div class="link-button-container">
         <a href="index.php?page=login" class="link-button">Log in</a>
         <a href="index.php?page=register" class="link-button">Register</a>
+    </div>
+    <div class="information-container">
+        <h1>Welcome to the Attendance Management System!</h1>
+        <p>Effortlessly mark attendance or create classes with just a few clicks.</p>
+        <p>Our system removes the hassle of manual tracking, reducing errors and improving accuracy.</p>
+        <p>Generate detailed reports, review attendance history, and monitor overall patterns with ease.</p>
+        <p>Designed with simplicity in mind, our user-friendly interface ensures a smooth experience for everyone.</p>
+    </div>
+    <div class="teacher-container">
+        <h1>Teacher Features</h1>
+        <p>Create and manage classes effortlessly.</p>
+        <p>View real-time student attendance updates.</p>
+        <p>Generate comprehensive attendance reports.</p>
+        <p>Manually mark students as present from the available list.</p>
+        <p>Create and distribute unique class codes for students to join.</p>
+    </div>
+    <div class="student-container">
+        <h1>Student Features</h1>
+        <p>Join classes using a unique code provided by your teacher.</p>
+        <p>Access and view all your enrolled classes from a simple dashboard.</p>
+        <p>Track your attendance percentage for each class in real time.</p>
     </div>
 </body>
 <style>
@@ -67,12 +60,5 @@
         height: 200px;
         width: 1250px;
         border-radius: 10px;
-    }
-
-    .information-container ul, .teacher-container ul, .student-container ul {
-        text-align: left;
-        display: inline-block; 
-        margin: 0 auto;
-        padding-left: 20px;
     }
 </style>
