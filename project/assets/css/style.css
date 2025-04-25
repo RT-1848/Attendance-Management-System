@@ -1,836 +1,658 @@
-/* Attendance System - Enhanced Educational Theme */
+/* CSS Styling for our Class Attendance Project */
+
+
+/*  margin, padding, and box-sizing for all elements */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; /* no margin for any elements */
+    padding: 0; /* no padding  */
+    box-sizing: border-box; /*  padding and borders are included in total width and height */
 }
 
-:root {
-    --primary-color: #3a6ea5;
-    --secondary-color: #004e98;
-    --accent-color: #ff6b6b;
-    --success-color: #4CAF50;
-    --warning-color: #ffc107;
-    --error-color: #f44336;
-    --text-color: #333;
-    --light-text: #666;
-    --background-light: #f7f9fc;
-    --card-bg: #ffffff;
-    --border-radius: 8px;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --header-font: 'Segoe UI', Arial, sans-serif;
-    --body-font: 'Open Sans', Arial, sans-serif;
-}
-
+/* Body styling */
 body {
-    font-family: var(--body-font);
-    background-color: var(--background-light);
+    font-family: Arial, sans-serif; /* sans-serif font */
+    background-color: ghostwhite; /* Light background color for the page */
+    line-height: 1.6; /* 1.6 height between lines*/
+    /* background image, stays fixed with scrolling */ 
     background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%233a6ea5' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
     background-attachment: fixed;
-    line-height: 1.6;
-    color: var(--text-color);
 }
 
+/* Container for layout */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 32px;
-    position: relative;
-    min-height: calc(100vh - 100px);
+    max-width: 1200px; /* container width is max 1200px */
+    margin: 0 auto; /* containter is centered  */
+    padding: 24px; /* 24px padding inside the container */
 }
 
-/* Header Styles */
-.header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 100;
+/* Login and Register form styling */
+.login-form, .register-form {
+    max-width: 400px; /* 400px max width */
+    margin: 50px auto; /* form is centered, with 50px margin above and below */
+    padding: 20px; /*  20px padding inside the form */
+    background: white; /* White background */
+    border-radius: 5px; /* Rounds the corners of the form */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* slight shadow around the form */
 }
 
-.header-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 32px;
-}
-
-.app-logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: white;
-    text-decoration: none;
-}
-
-/* Form Styles */
-.login-form, .register-form, .mark-attendance-form {
-    max-width: 450px;
-    margin: 60px auto;
-    padding: 32px;
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    border-top: 4px solid var(--primary-color);
-    position: relative;
-}
-
-.login-form:before, .register-form:before, .mark-attendance-form:before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    z-index: -1;
-    border-radius: calc(var(--border-radius) + 4px);
-    opacity: 0.1;
-}
-
+/* Header for form */
 h2 {
-    text-align: center;
-    margin-bottom: 24px;
-    color: var(--primary-color);
-    font-family: var(--header-font);
-    font-weight: 600;
-    position: relative;
-    padding-bottom: 12px;
+    text-align: center; /* text is centered  */
+    margin-bottom: 20px; /* 20px space below the header */
+    color: #333; /* Dark text color  */
 }
 
-h2:after {
-    content: '';
-    position: absolute;
-    width: 60px;
-    height: 3px;
-    background: var(--primary-color);
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
+/* Form group styling */
 .form-group {
-    margin-bottom: 20px;
-    position: relative;
+    margin-bottom: 15px; /* 15px space below each form group */
 }
 
+/* Label styling */
 label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--text-color);
-    font-weight: 500;
-    transition: all 0.3s ease;
+    display: block; /* Makes labels block */
+    margin-bottom: 5px; /* 5px space below the label */
+    color: #555; /* Medium gray text color for labels */
 }
 
+/* Input and select fields styling */
 input, select {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
-    font-size: 16px;
-    transition: all 0.3s ease;
-    background-color: #f9f9f9;
+    width: 100%; /* Makes input/select fields take the full width */
+    padding: 10px; /* 10px space inside the fields */
+    border: 1px solid #ddd; /* Light gray border for the fields */
+    border-radius: 4px; /* Rounds the corners of the fields */
+    font-size: 16px; /* 16px font size */
 }
 
-input:focus, select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(58, 110, 165, 0.2);
-    background-color: white;
-}
-
+/* Button styling */
 button {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    color: white;
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
+    width: 100%; /* buttons take full width of their container */
+    padding: 10px; /* 10px space inside the button */
+    background-color:  #3a86ff; /* blue background color for the button */
+    color: white; /* White text color for the button */
+    border: none; /*  no border */
+    border-radius: 4px; /* Rounds the corners of the button */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+    font-size: 16px; /* 16px font size */
 }
 
+/* Hover effect for buttons */
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    background-color: #0057B8; /* Darkens the button background on hover */
 }
 
-button:active {
-    transform: translateY(1px);
-}
-
-button:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: all 0.5s ease;
-}
-
-button:hover:after {
-    left: 100%;
-}
-
-.success {
-    color: var(--success-color);
-    margin-bottom: 15px;
-    padding: 12px;
-    background-color: rgba(76, 175, 80, 0.1);
-    border-left: 4px solid var(--success-color);
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
-}
-
+/* Error message styling */
 .error {
-    color: var(--error-color);
-    margin-bottom: 15px;
-    padding: 12px;
-    background-color: rgba(244, 67, 54, 0.1);
-    border-left: 4px solid var(--error-color);
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    color: #ff0000; /* Red text color for error messages */
+    margin-bottom: 15px; /* 15px space below the error message */
+    padding: 10px; /* 10px padding inside the error box */
+    background-color: #ffebee; /* Light red background for the error message */
+    border-radius: 4px; /* Rounds the corners of the error box */
 }
 
+/* Link styling */
 a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    color: #0057B8; /* blue color for links */
+    text-decoration: none; /* Removes underline from links */
 }
 
+/* Hover effect for links */
 a:hover {
-    color: var(--secondary-color);
-    text-decoration: underline;
+    text-decoration: underline; /* Underlines the link when hovered */
 }
 
-/* Dashboard styles */
-.dashboard {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 24px;
-}
 
-.sidebar {
-    background: var(--card-bg);
-    padding: 24px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    height: fit-content;
-    border-left: 4px solid var(--primary-color);
-}
 
-.main-content {
-    background: var(--card-bg);
-    padding: 24px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-}
 
+
+
+
+
+
+
+
+
+
+
+
+/* Navigation menu styling, used with the dashboard */
 .nav-menu {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 32px;
-    flex-wrap: wrap;
+    display: flex; /* flex for horizontal layout */
+    gap: 12px; /* 12px space between the buttons */
+    margin-bottom: 24px; /* 24px space below the menu */
 }
 
+/* Navigation button styling */
 .nav-button {
-    padding: 10px 18px;
-    background: var(--primary-color);
-    color: white;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 18px; /* padding inside the button */
+    background-color: #3498db; /* Blue background color for the button */
+    color: white; /* White text  */
+    border-radius: 6px; /* Rounds the corners of the button */
+    text-decoration: none; /* no underline */
+    font-weight: 500; /* text is slightly bold */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* transition for when hovered */
 }
 
+/* Hover effect for navigation buttons */
 .nav-button:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    text-decoration: none;
+    background-color: #2f6cd8; /* Darkens the button background on hover */
+    transform: translateY(-2px); /* Lifts the button slightly by the y-axis on hover */
 }
 
-.course-link {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dashboard layout styles */
+.dashboard {
+    display: grid; /* grid layout */
+    grid-template-columns: 250px 1fr; /* Sidebar is 250px wide, main content takes the rest */
+    gap: 20px; /* 20px space between the grid items */
 }
 
-.course-link:hover {
-    color: var(--secondary-color);
+/* Dashboard header styling */
+.dashboard-header {
+    margin-bottom: 32px; /* 32px space below the header */
+    display: flex; /* flexb for layout */
+    justify-content: space-between; /* even space between header items */
+    align-items: left; /* Vertically aligned items in the center */
+    padding: 16px; /* 10px padding inside the header */
+    background: white; /* White background for the header */
+    border-radius: 8px; /* Rounds the corners of the header */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* slight shadow around the header */
 }
 
-/* Class list styles */
+
+/* Dashboard title styling */
+.dashboard-title {
+    margin: 0px; /* No margin for the title */
+    font-size: 2rem; /*  larger font size for the dashboard title */
+    color: #202020; /* Dark gray color for the title */
+    text-align: center; /* text is centered horizontally */
+    width: 100%; /* the title takes up the full width of container */
+    display: flex; /* flex layout */
+    justify-content: center; /*  the title is horizontally centered */
+    align-items: center; /* the title is centered vertically  */
+}
+
+/* Class list container */
 .class-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
+    display: grid; /* Uses grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Automatically adjusts the number of columns */
+    gap: 20px; /* 20px space between class cards */
 }
 
+/* Class card styling */
 .class-card {
-    background: var(--card-bg);
-    padding: 24px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-    border-top: 3px solid var(--primary-color);
+    background: white; /* White background for the card */
+    padding: 20px; /* 20px space inside the card */
+    border-radius: 5px; /* Rounds the corners of the card */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* slight shadow around the card */
 }
 
-.class-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
+/* Class card title */
 .class-card h3 {
-    margin-bottom: 16px;
-    color: var(--primary-color);
+    margin-bottom: 10px; /* 10px space below the title */
 }
 
+/* Class code styling */
 .class-code {
-    font-family: 'Courier New', monospace;
-    background: rgba(58, 110, 165, 0.1);
-    padding: 8px 12px;
-    border-radius: var(--border-radius);
-    display: inline-block;
-    margin: 12px 0;
-    color: var(--secondary-color);
-    font-weight: 600;
-    border: 1px dashed var(--primary-color);
+    font-family: monospace; /* Uses monospace font for the code */
+    background: #f0f0f0; /* Light gray background for the class code */
+    padding: 5px 10px; /*  space inside the class code box */
+    border-radius: 4px; /* Rounds the corners of the box */
+    display: inline-block; /* Makes it inline-block to stay next to text */
+    margin: 10px 0; /* 10px space around the code */
 }
 
-.view-toggle {
-    margin: 24px 0;
-    text-align: center;
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
 
-.toggle-button {
-    padding: 10px 18px;
-    background-color: #eef2f7;
-    color: var(--text-color);
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
 
-.toggle-button:hover {
-    background-color: #e1e8f0;
-}
 
-.toggle-button.active {
-    background-color: var(--primary-color);
-    color: white;
-}
 
-.chart-container {
-    margin: 24px 0;
-    padding: 24px;
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    height: 450px;
-    border: 1px solid #eef2f7;
-}
 
-/* Course cards container */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dashboard - Course Cards layout */
+
+
 .courses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 32px;
-    padding: 24px 0;
+    display: grid; /* grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Automatically adjusts columns */
+    gap: 24px; /* 24px space between the course cards */
+    padding: 20px 0; /* 20px vertical padding around the grid */
 }
 
 /* Individual course card */
 .course-card {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+    background: whitesmoke; /* White background */
+    border-radius: 10px; /* Rounds the corners of the card */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Deep shadow for the card */
+    overflow: hidden; /* Hides content overflowing the card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* transition when hovered */
 }
 
+/* Hover effect for course cards */
 .course-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px); /* Lifts the card on hover by the y-axis */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Increased shadow on hover */
 }
 
-.course-banner {
-    height: 140px;
-    background-color: var(--primary-color);
-    background-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    position: relative;
-    overflow: hidden;
+/* Gradient banner styles for different course sections */
+.course-banner-gradient-1 {
+    height: 140px; /* 140px height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #ff6b6b, #f06595); /* Red-pink gradient */
 }
 
-.course-banner:after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 0h2v20H9V0zm25.134.84l1.732 1-10 17.32-1.732-1 10-17.32zm-20 20l1.732 1-10 17.32-1.732-1 10-17.32zM58.16 4.134l1 1.732-17.32 10-1-1.732 17.32-10zm-40 40l1 1.732-17.32 10-1-1.732 17.32-10zM80 9v2H60V9h20zM20 69v2H0v-2h20zm79.32-55l-1 1.732-17.32-10L82 4l17.32 10zm-80 80l-1 1.732-17.32-10L2 84l17.32 10zm96.546-75.84l-1.732 1-10-17.32 1.732-1 10 17.32zm-100 100l-1.732 1-10-17.32 1.732-1 10 17.32zM38.16 24.134l1 1.732-17.32 10-1-1.732 17.32-10zM60 29v2H40v-2h20zm19.32 5l-1 1.732-17.32-10L62 24l17.32 10zm16.546 4.16l-1.732 1-10-17.32 1.732-1 10 17.32zM111 40h-2V20h2v20zm3.134.84l1.732 1-10 17.32-1.732-1 10-17.32zM40 49v2H20v-2h20zm19.32 5l-1 1.732-17.32-10L42 44l17.32 10zm16.546 4.16l-1.732 1-10-17.32 1.732-1 10 17.32zM91 60h-2V40h2v20zm3.134.84l1.732 1-10 17.32-1.732-1 10-17.32zm24.026 3.294l1 1.732-17.32 10-1-1.732 17.32-10zM39.32 74l-1 1.732-17.32-10L22 64l17.32 10zm16.546 4.16l-1.732 1-10-17.32 1.732-1 10 17.32zM71 80h-2V60h2v20zm3.134.84l1.732 1-10 17.32-1.732-1 10-17.32zm24.026 3.294l1 1.732-17.32 10-1-1.732 17.32-10zM120 89v2h-20v-2h20zm-84.134 9.16l-1.732 1-10-17.32 1.732-1 10 17.32zM51 100h-2V80h2v20zm3.134.84l1.732 1-10 17.32-1.732-1 10-17.32zm24.026 3.294l1 1.732-17.32 10-1-1.732 17.32-10zM100 109v2H80v-2h20zm19.32 5l-1 1.732-17.32-10 1-1.732 17.32 10zM31 120h-2v-20h2v20z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-    opacity: 0.8;
+.course-banner-gradient-2 {
+    height: 140px; /* 140px height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #1dd1a1, #10ac84); /* Teal-green gradient */
 }
 
+.course-banner-gradient-3 {
+    height: 140px; /* 140px height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #5f27cd, #341f97); /* Purple-indigo gradient */
+}
+
+.course-banner-gradient-4 {
+    height: 140px; /* 140px height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #ff9f43, #ff6b01); /* Orange-amber gradient */
+}
+
+.course-banner-gradient-5 {
+    height: 140px; /* 140px height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #54a0ff, #2e86de); /* Blue-sky gradient */
+}
+
+.course-banner-gradient-6 {
+    height: 140px; /* 140px height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #ff85a2, #ffb3c9); /*  pink blend */
+}
+
+.course-banner-gradient-7 {
+    height: 140px; /* 140px height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #aad8c6, #88b8d5); /*  mint to baby blue */
+}
+
+.course-banner-gradient-8 {
+    height: 140px; /* 140px height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #e1c68a, #f9a280); /* yellow to peach */
+}
+
+.course-banner-gradient-9 {
+    height: 140px; /* 140px height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #bb8bfa, #7da3c0); /* Lilac to sky blue */
+}
+
+.course-banner-gradient-10 {
+    height: 140px; /* 140px height of the banner */
+    position: relative; /* Positions the banner relative to its container */
+    background-image: linear-gradient(135deg, #79c7f1, #e29ac9); /* Icy blue to pastel pink */
+}
+
+
+
+
+
+
+
+/* Container for course content */
 .course-content {
-    padding: 24px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    padding: 20px; /* 20px padding inside the content container */
 }
 
+/* Course name styling */
 .course-name {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-color);
-    margin: 0 0 12px 0;
-    line-height: 1.4;
+    font-size: 1.25rem; /* larger font size for course name */
+    font-weight: bold; /* the course name is bold */
+    margin-bottom: 8px; /* 8px space below the course name */
 }
 
+/* Course code styling */
 .course-code {
-    font-size: 0.9rem;
-    color: var(--light-text);
-    margin: 0 0 20px 0;
-    background-color: #f5f7fa;
-    padding: 6px 10px;
-    border-radius: var(--border-radius);
-    display: inline-block;
-    border: 1px dashed #ddd;
+    font-size: 0.9rem; /* Smaller font size for course code */
+    background-color: #f1f1f1; /* Light gray background for course code */
+    padding: 6px 10px; /* Adds padding inside the course code box */
+    border-radius: 4px; /* Rounds the corners of the course code box */
+    display: inline-block; /* Makes the course code display inline with other content */
+    color: #333; /* Dark text color for course code */
+    margin-bottom: 16px; /* Adds space below the course code */
 }
 
+/* Meta information section (such as instructor or semester) */
 .course-meta {
-    margin-top: auto;
-    text-align: right;
+    margin-top: auto; /* Ensures the meta section is pushed to the bottom */
+    text-align: right; /* Aligns the meta text to the right */
 }
 
+/* Course link button styling */
 .course-link {
-    display: inline-block;
-    padding: 10px 18px;
-    background-color: var(--primary-color);
-    color: white;
-    text-decoration: none;
-    border-radius: var(--border-radius);
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline-block; /* the link display is inline with other elements */
+    padding: 10px 18px; /*  padding inside the link button */
+    background-color: #3498db; /* Blue background color for the button */
+    color: white; /* White text color for the link */
+    text-decoration: none; /* no underline for the link */
+    border-radius: 6px; /* Rounds the corners of the button */
+    font-weight: 500; /* the font is slightly bold  */
+    transition: background-color 0.3s ease; /* transition for background color */
 }
 
+/* Hover effect for course link button */
 .course-link:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    text-decoration: none;
-    color: white;
+    background-color: #2f6cd8; /* Darkens the background color on hover */
+    text-decoration: none; /* no underline when hovered */
 }
 
-/* Dashboard header */
-.dashboard-header {
-    margin-bottom: 36px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Class Details Page for Teacher */ 
+
+.class-details {
+    max-width: 1200px; /* max width of 1200px */ 
+    margin: 0 auto; /* container is centered horizontally */
+    padding: 20px; /* 20px padding */ 
+    font-family: Arial, sans-serif; /* sans-serif font */ 
+    color: #00205B; /* MTSU True Blue vibe */
 }
 
-.dashboard-title {
-    font-size: 1.9rem;
-    color: var(--primary-color);
-    margin: 0;
-    font-weight: 600;
-    font-family: var(--header-font);
-    position: relative;
+.class-code {
+    margin-bottom: 10px; /* 10px space below the class code */ 
+    font-weight: bold; /* bold font */ 
 }
 
-.dashboard-title:after {
-    content: '';
-    position: absolute;
-    width: 40px;
-    height: 3px;
-    background: var(--primary-color);
-    bottom: -8px;
-    left: 0;
+/* Left - Code box */
+.attendance-section {
+    flex: 1; /* flexable sizing for the layout */ 
+    background-color: #e6f0ff; /* light blue background */ 
+    border-radius: 12px; /* rounded corners */ 
+    padding: 20px; /* 20px padding */ 
+    max-width: 300px; /* 300px max width */ 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* slight shadow */
 }
 
-/* Mark Attendance Specific Styles */
-.mark-attendance-form {
-    background: var(--card-bg);
-    padding: 32px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-    max-width: 500px;
-    margin: 60px auto;
-    border-top: 4px solid var(--primary-color);
+
+.students-section {
+    margin-top: 40px; /* 40px space above the student section */
+    background-color: #ffffff; /* white background */ 
+    border-radius: 12px; /* rounded corners */ 
+    padding: 20px; /* 20px padding inside */ 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* slight shadow */ 
 }
 
-.mark-attendance-form:before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z' fill='%233a6ea5' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-    z-index: -1;
-    border-radius: calc(var(--border-radius) + 4px);
-    opacity: 0.8;
+.students-section table {
+    width: 100%; /* Makes the table take full width */
+    border-collapse: collapse; /* no space between borders */ 
 }
 
-.mark-attendance-form h2 {
-    color: var(--primary-color);
-    text-align: center;
-    margin-bottom: 24px;
+/* Header and cell styling for the student table */
+.students-section th,
+.students-section td {
+    padding: 10px; /* 10px padding to each cell */
+    border-bottom: 1px solid #ccc; /* line between rows */
+    text-align: left; /* text aligned to the left */
 }
 
-#attendance_code {
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    text-align: center;
-    padding: 16px;
-    background-color: rgba(58, 110, 165, 0.05);
-    border: 1px dashed var(--primary-color);
+.toggle-button {
+    margin: 20 10px; /* space around the button */ 
+    padding: 10px 20px; /* padding inside the button */ 
+    background-color: #0057B8; /* blue background color */ 
+    color: white; /* white text color */ 
+    border-radius: 6px;  /* rounded corners */ 
+    text-decoration: none; /* no underline */ 
 }
 
-.code-instruction {
-    text-align: center;
-    color: var(--light-text);
-    margin-bottom: 24px;
-    font-size: 0.95rem;
+/* View toggle buttons styling */
+.view-toggle {
+    margin: 20px 0; /*  space above and below the toggle */
+    text-align: center; /* the text is centered */
+    display: flex; /* flex for horizontal layout */
+    gap: 10px; /* 10px space between the buttons */
+    justify-content: center; /* the toggle buttons are centered */
 }
 
-.attendance-submitted-icon {
-    text-align: center;
-    margin: 20px 0;
-    font-size: 64px;
-    color: var(--success-color);
+
+#generateCodeButton {
+    background-color: #00205B; /* MTSU True Blue */
+    color: white; /* white text color */ 
+    padding: 10px 20px; /* padding for the button */ 
+    border: none; /* no border around button */ 
+    border-radius: 6px; /* rounded courners for the button */ 
+    cursor: pointer; /* curser becomes a pointer when hovered */
+    font-size: 16px; /* 16px font size */ 
+    transition: background-color 0.3s ease; /* transition for the background color */
 }
 
-/* Tables */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background-color: var(--card-bg);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
+#generateCodeButton:hover {
+    background-color: #0057B8; /* Hover color */
 }
 
-thead {
-    background-color: var(--primary-color);
-    color: white;
+#backToDashboardLink {
+    color:#00205B;
+    text-decoration: none; /* no underline */
+    font-size: 16px; /* 16px font size */ 
+    bottom: 1px; /* Position the link 20px from the bottom */
+    transition: background-color 0.3s ease; /* transition for the background color */
 }
 
-th, td {
-    padding: 16px;
-    text-align: left;
-    border-bottom: 1px solid #eef2f7;
+#backToDashboardLink:hover {
+    color: #0057B8; /* Hover color */
 }
 
-tbody tr:hover {
-    background-color: rgba(58, 110, 165, 0.05);
+
+
+
+
+
+/* Chart container styling */
+.chart-container {
+    margin: 20px 0; /* space above and below the chart */
+    padding: 20px; /* 20px padding inside the chart container */
+    background: white; /* White background for the chart container */
+    border-radius: 8px; /* Rounds the corners of the container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow around the container */
+    height: 400px; /* 400px fixed height for the chart */
 }
 
-tbody tr:last-child td {
-    border-bottom: none;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Join Class Page CSS */
+
+#joinClassPage {
+    padding: 40px 20px; /* spacing inside the page from all sides */
+    background-color: #f4f8ff; /* Fallback solid color */
+    background: linear-gradient(to bottom right, #e6f0ff, #ffffff); /* Smooth diagonal gradient from light blue to white */
+    box-sizing: border-box; /* padding and border is included for the total width and height */
 }
 
-/* Educational Background Elements */
-.edu-pattern {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.4;
+#joinClassTitle {
+    text-align: center; /* the title is centered horizontally */
+    font-size: 32px; /* 32px Large font size for the title */
+    color: #00205B; /* True Blue color */
+    margin-bottom: 40px; /* 40px Space below the title */
 }
 
-.edu-pattern:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 50%;
-    background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233a6ea5' fill-opacity='0.05'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+#joinClassLayout {
+    display: flex; /* flex to organize child elements horizontally */
+    justify-content: center; /* items are centered horizontally  */
+    align-items: flex-start; /*  items aligned to the top of the container */
+    gap: 30px; /* 30px Space between items */
+    flex-wrap: wrap; /* items can wrap to a new line on small screens */
 }
 
-.edu-pattern:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233a6ea5' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+#joinClassForm {
+    flex: 2; /* Take up 2x the space  */
+    max-width: 400px; /* 400px max width */
+    background-color: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
+    backdrop-filter: blur(3px); /*  blur to background behind the form  */
+    padding: 30px; /* 30px inner spacing inside the form */
+    border-radius: 12px; /* Round the corners of the form */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /*  shadow */
+    box-sizing: border-box; /* padding and borders included for the total width/height */
+    text-align: left; /* text aligned to the left */
 }
 
-/* Background decorations for attendance page */
-.attendance-page-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    opacity: 0.4;
-    pointer-events: none;
+#joinClassBtn {
+    background-color:  #3a86ff; /* Bright blue background */
+    color: #fff; /* White text color */
+    border: none; /* no border  */
+    padding: 12px 24px; /* vertical and horizontal padding */
+    border-radius: 8px; /* Round the button corners */
+    font-size: 16px; /* 16px font size */
+    cursor: pointer; /*  pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* transitions for hover effects */
+    margin-top: 15px; /* 15px space above the button */
 }
 
-.attendance-page-bg:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 300px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    opacity: 0.05;
-    z-index: -1;
+#joinClassBtn:hover {
+    background-color: #001a4d; /* Darker blue on hover */
+    transform: translateY(-2px); /* button moves upward when hovered */
 }
 
-.attendance-page-bg:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 300px;
-    background: linear-gradient(315deg, var(--secondary-color), var(--primary-color));
-    opacity: 0.05;
-    z-index: -1;
+/*  Student Attendance Page  */
+.class-details-student {
+    text-align: center; /* text is centered for the entire section */
 }
 
-/* Education themed decorative elements */
-.edu-icons {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -3;
-    opacity: 0.03;
-    overflow: hidden;
+.class-details-student h2 {
+    font-size: 28px; /* large font size for heading */
+    margin-bottom: 10px; /* 10px space below the heading */
+    color: #2c3e50; /* Dark blue-gray text color */
 }
 
-.edu-icons:before {
-    content: '\u2713 \u270e \u270f \u2710 \u2711 \u2712 \u2328 \u2611 \u2612 \u262f \u271a \u2740 \u2695';
-    position: absolute;
-    font-size: 200px;
-    color: var(--primary-color);
-    top: -50px;
-    left: -50px;
-    z-index: -1;
-    transform: rotate(-15deg);
-    letter-spacing: 50px;
+.class-details-student p {
+    font-size: 16px; /* 16px font size */
+    margin: 8px 0; /* 8px spacing above and below paragraph */
 }
 
-.edu-icons:after {
-    content: '\u2713 \u270e \u270f \u2710 \u2711 \u2712 \u2328 \u2611 \u2612 \u262f \u271a \u2740 \u2695';
-    position: absolute;
-    font-size: 200px;
-    color: var(--secondary-color);
-    bottom: -50px;
-    right: -50px;
-    z-index: -1;
-    transform: rotate(15deg);
-    letter-spacing: 50px;
+.attendance-summary {
+    margin: 20px 0; /* 20px space above and below the summary */
+    padding: 20px; /* 20px padding  */
+    background-color: #eef3fa; /* Light blue background for the box */
+    border-radius: 12px; /* Round the corners of the summary box */
+    text-align: left; /* text aligned to the left */
 }
 
-/* Animation for attendance check-in */
-@keyframes success-pulse {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.1);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+.attendance-summary p {
+    font-weight: 500; /* slightly bold font */
+    color: #34495e; /* Medium-dark blue text */
 }
 
-.attendance-success {
-    animation: success-pulse 2s ease infinite;
+.attendance-dates {
+    margin-top: 30px; /* 30px space above the date list */
+    text-align: left; /* whole section aligned to the left */
 }
 
-/* Additional styles for attendance icons */
-.attendance-icon {
-    display: inline-block;
-    margin: 0 10px;
-    font-size: 24px;
-    color: var(--primary-color);
-    transition: all 0.3s ease;
+.attendance-dates h3 {
+    font-size: 20px; /* 20px font size */
+    margin-bottom: 10px; /* 10px Space below the subheading */
+    color: #2c3e50; /* Dark blue-gray text color */
 }
 
-.attendance-icon:hover {
-    transform: scale(1.2);
-    color: var(--secondary-color);
+.attendance-dates ul {
+    list-style: none; /* no bullet points */
+    padding-left: 0; /* no left padding */
 }
 
-/* Student profile image style */
-.student-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 18px;
-    margin-right: 12px;
+.attendance-dates li {
+    padding: 8px 12px; /* inner spacing for each item */
+    margin-bottom: 6px; /* 6px Space between list items */
+    background: #f0f4f9; /* Light gray-blue background */
+    border-radius: 8px; /* Round corners for each date item */
+    font-size: 15px; /* 15px font size */
+    color: #2d3436; /* Dark text color */
 }
 
-/* Course card labels */
-.course-label {
-    display: inline-block;
-    padding: 4px 8px;
-    background-color: rgba(58, 110, 165, 0.1);
-    color: var(--primary-color);
-    border-radius: 4px;
-    font-size: 0.8rem;
-    margin-right: 8px;
-    margin-bottom: 8px;
+.btn {
+    display: inline-block; /* inline with other elements */
+    margin-top: 30px; /* 30px Space above the button */
+    padding: 10px 20px; /* padding inside the button */
+    background: #3498db; /* Blue background */
+    color: #fff; /* White text */
+    text-decoration: none; /* no underline  */
+    font-weight: bold; /* Bold font */
+    border-radius: 8px; /* Rounded corners */
+    transition: background 0.3s ease; /* background color transition on hover */
 }
 
-/* Status indicators */
-.status-active {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background-color: var(--success-color);
-    border-radius: 50%;
-    margin-right: 8px;
-    position: relative;
-}
-
-.status-active:after {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    background-color: var(--success-color);
-    border-radius: 50%;
-    opacity: 0.3;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 0.3;
-    }
-    70% {
-        transform: scale(1.5);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 0;
-    }
-}
-
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-    .container {
-        padding: 16px;
-    }
-    
-    .dashboard {
-        grid-template-columns: 1fr;
-    }
-    
-    .courses-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .login-form, .register-form, .mark-attendance-form {
-        padding: 24px;
-        margin: 40px 16px;
-    }
-    
-    .dashboard-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .nav-menu {
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .nav-button {
-        text-align: center;
-    }
-    
-    .view-toggle {
-        flex-direction: column;
-    }
-    
-    th, td {
-        padding: 12px 8px;
-        font-size: 14px;
-    }
-    
-    .course-banner {
-        height: 100px;
-    }
-}
-
-/* Print Styles */
-@media print {
-    body {
-        background: none;
-        color: black;
-    }
-    
-    .container {
-        max-width: 100%;
-        padding: 0;
-    }
-    
-    .nav-menu, .toggle-button, button, .course-banner:after {
-        display: none;
-    }
-    
-    .course-card, .class-card, table, .mark-attendance-form {
-        box-shadow: none;
-        border: 1px solid #ddd;
-    }
-    
-    thead {
-        background-color: #f0f0f0;
-        color: black;
-    }
+.btn:hover {
+    background: #2980b9; /* Darker blue when hovered */
 }
