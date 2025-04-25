@@ -2,20 +2,20 @@
 session_start();
 require_once 'config/database.php';
 
-// Basic routing
+// basic routing to the about page at orgin
 $page = isset($_GET['page']) ? $_GET['page'] : 'about';
 
-// Check if user is logged in
+// check if user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
 $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : null;
 
-// Redirect logic
+// redirect to the about if the user isn't logged in and isn't on the register or about page initially
 if (!$isLoggedIn && $page !== 'login' && $page !== 'register' && $page !== 'about') {
     header('Location: index.php?page=about');
     exit();
 }
 
-// Include the appropriate page
+// the path for all the pages
 $pageFile = 'pages/' . $page . '.php';
 if (file_exists($pageFile)) {
     include $pageFile;
