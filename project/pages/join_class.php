@@ -1,28 +1,33 @@
 <?php
-// Check if user is logged in and is a student
+//page where a student can join a new class
+// check if user is logged in and is a student
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
+    //if not redirect to the login pafe
     header('Location: index.php?page=login');
     exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $classCode = mysqli_real_escape_string($conn, $_POST['class_code']);
+    //getting the class code from the form input
+    $classCode = htmlspecialchars($_POST['class_code']);
     
     try {
-        // Check if class exists
+        // check if class code exists by retreiving the row with the matching code
         $query = "SELECT id FROM classes WHERE class_code = '$classCode'";
         $result = mysqli_query($conn, $query);
         
+        //if such a row exists
         if (mysqli_num_rows($result) > 0) {
             $class = mysqli_fetch_assoc($result);
+            //get the id
             $classId = $class['id'];
             
-            // Check if already enrolled
+            // check if the student is already enrolled by checking if there is a row in class_enrollments where the student id and class id exists
             $query = "SELECT id FROM class_enrollments WHERE class_id = $classId AND student_id = {$_SESSION['user_id']}";
             $result = mysqli_query($conn, $query);
             
             if (mysqli_num_rows($result) === 0) {
-                // Enroll student
+                // If the students isn't already enrolled enroll them by inserting the info to the class_enrollments table
                 $query = "INSERT INTO class_enrollments (class_id, student_id) VALUES ($classId, {$_SESSION['user_id']})";
                 if (mysqli_query($conn, $query)) {
                     $success = "Successfully joined the class!";
@@ -61,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php if (isset($success)): ?>
                     <div class="success"><?php echo $success; ?></div>
                 <?php endif; ?>
-
+                <!-- Form to get the class code -->
                 <form method="POST" action="">
                     <div id="formGroup">
                         <label for="class_code">Class Code</label>
@@ -69,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <button id="joinClassBtn" type="submit">Join Class</button>
                 </form>
-
+                <!-- Link to redirect to the dashboard -->
                 <p><a id="backToDashboardLink" href="index.php?page=dashboard">Back to Dashboard</a></p>
             </div>
         </div>

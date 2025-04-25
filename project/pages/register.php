@@ -1,12 +1,16 @@
 <?php
+//this is the page where users register or create new accounts
+//post  method is used since passwords and other info is collected from users
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
-    $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    //storing all the information from the form to local vars
+    $firstname = htmlspecialchars($_POST['firstname']);
+    $lastname = htmlspecialchars($_POST['lastname']);
+    $username = htmlspecialchars( $_POST['username']);
+    $email = htmlspecialchars($_POST['email']);
     $password = $_POST['password'];
-    $role = mysqli_real_escape_string($conn, $_POST['role']);
+    $role = htmlspecialchars( $_POST['role']);
 
+    //conditions array for secure password
     $conditions = [
         'letter' => [
             'pattern' => '/[A-Za-z]/',
@@ -22,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]
     ];
 
+    //loop checking if the password is valid and meetis the conditions.
     $valid = true;
     foreach ($conditions as $key => $rule) {
         if (!preg_match($rule['pattern'], $password)) {
@@ -31,12 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errorList[$key] = true;
         }
     }
-    // Validate input
+    // Validate user inputs
     $error = "";
     if (empty($username) || empty($email) || empty($password) && $valid) {
         $error = "All fields are required";
     }
     else if(!$valid){
+        //reporting errors if the password is not valid
         if (!isset($errorList['letter']) || !$errorList['letter']) {
             $error .= "Password must contain at least one letter.<br>";
         }
@@ -51,22 +57,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } 
     else {
-        // Check if username or email already exists
+        // Check if username or email already exists in the table
         $query = "SELECT id FROM users WHERE username = '$username' OR email = '$email'";
         $result = mysqli_query($conn, $query);
         
         if (mysqli_num_rows($result) > 0) {
+            //if so report an error
             $error = "Username or email already exists";
         } else {
-            // Create new user
+            //otherwise hash the password and insert the new user into the users table
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $query = "INSERT INTO users (first_name, last_name, username, email, password, role) VALUES ('$firstname', '$lastname', '$username', '$email', '$hashedPassword', '$role')";
             
-            
+            //error handeling if the query is successful you are redirected to the login page to login with the newly created account
             if (mysqli_query($conn, $query)) {
                 header('Location: index.php?page=login');
                 exit();
             } else {
+                //otherwise report an error
                 $error = "Registration failed. Please try again.";
             }
         }
@@ -85,10 +93,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
         <div class="register-form">
+            <!-- header for the register page -->
             <h2>Register</h2>
+            <!-- Checking if there are any errors set and if so displaying them -->
             <?php if (isset($error)): ?>
                 <div class="error"><?php echo $error; ?></div>
             <?php endif; ?>
+            <!-- Form to get user input for the information -->
             <form method="POST" action="">
                 <div class="form-group">
                     <label for="firstname">First Name</label>
@@ -110,6 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
                 </div>
+                <!-- Drop down for role selection -->
                 <div class="form-group">
                     <label for="role">Role</label>
                     <select id="role" name="role" required>
@@ -119,6 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <button type="submit">Register</button>
             </form>
+            <!-- link to redirect to the login page if the user already has an account -->
             <p>Already have an account? <a href="index.php?page=login">Login here</a></p>
         </div>
     </div>
