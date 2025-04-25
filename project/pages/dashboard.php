@@ -35,13 +35,6 @@ $userName = $user['username'];
 $firstName = $user['first_name'];
 ?>
 
-<?php
-// Generate a random number between 1 and 5
-$randomNumber = rand(1, 5);
-// Dynamically create the class color banner based on the random number
-$selectedGradientClass = "course-banner-gradient-" . $randomNumber;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,6 +70,10 @@ $selectedGradientClass = "course-banner-gradient-" . $randomNumber;
         <div class="courses-grid">
             <!-- For each loop over the classes retreived from the sql database -->
             <?php foreach ($classes as $class): ?>
+                 <?php 
+                   $gradientIndex = $class['id'] % 10 + 1; //  gradient chosen based on class ID
+                    $selectedGradientClass = "course-banner-gradient-" . $gradientIndex;
+                ?>
                 <!-- Displaying each class in a d2l style class block -->
                 <div class="course-card">
                    <div class="<?php echo $selectedGradientClass; ?>"></div>
