@@ -3,7 +3,7 @@
 //since a password is being sent the post method is used for security
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //collecting the username and password securly
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $username = htmlspecialchars( $_POST['username']);
     $password = $_POST['password'];
 
     //getting user information from users table and storing it in result
@@ -57,12 +57,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
+                    <!-- adding a picture to toggle password display -->
+                    <img src=
+                    "https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png"
+                     width="5%"
+                     height="5%"
+                     style=
+                         "display: inline; 
+                         margin-left: 93%;
+                         transform: translateY(-30px);
+                         vertical-align: middle;
+                         cursor: pointer"
+                     id="togglePassword">
                 </div>
                 <button type="submit">Login</button>
-            </form>
             <!-- Redirect link at the bottom that takes user to the register page to register an account if they don't have one -->
             <p>Don't have an account? <a href="index.php?page=register">Register here</a></p>
         </div>
     </div>
+    <script>
+        // get the password input and toggle button
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        
+        // click event listener to toggle password
+        togglePassword.addEventListener('click', function() {
+            // if it is a password change to text and vice versa
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            
+            // change the eye icon
+            this.src = type === 'password' 
+                ? 'https://media.geeksforgeeks.org/wp-content/uploads/20210917145551/eye.png'
+                : 'https://media.geeksforgeeks.org/wp-content/uploads/20210917150049/eyeslash.png';
+        });
+    </script>
 </body>
 </html> 
