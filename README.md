@@ -23,9 +23,7 @@ Students can easily join classes by entering a unique code provided by their tea
 6. **Configure the Project (Optional)**
      - If needed, update database connection settings in the project file (database.php) to match your local MySQL host, username, password, and database name.
 7. **Access the Application**
-     - Open your browser and go to:
-     ```bash
-     http://localhost/WebTechFinal/
+     - Open your browser and go to: http://localhost/WebTechFinal/
 
 ## 🖥️ Tech Stack
 PHP, MySQL, HTML, CSS, JavaScript
