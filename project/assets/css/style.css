@@ -24,9 +24,6 @@ body {
     margin: 0 auto; /* containter is centered  */
     padding: 24px; /* 24px padding inside the container */
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /* Login and Register form styling */
