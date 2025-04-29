@@ -23,6 +23,10 @@ body {
     max-width: 1200px; /* container width is max 1200px */
     margin: 0 auto; /* containter is centered  */
     padding: 24px; /* 24px padding inside the container */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Login and Register form styling */
@@ -655,4 +659,15 @@ a:hover {
 
 .btn:hover {
     background: #2980b9; /* Darker blue when hovered */
+}
+
+footer {
+    width: 100%;
+    height: 150px;
+    background-color: #bbbbbb74;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px;
+    flex-direction: column;
 }
