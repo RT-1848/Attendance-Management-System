@@ -83,8 +83,4 @@ $percentage = $totalDays > 0 ? ($presentDays / $totalDays) * 100 : 0;
         </div>
     </div>
 </body>
-<footer>
-    <p>&copy MTSU CSCI 4410 | All Rights Reserved</p>
-    <strong>Youssef Botros | Harry He | Khalid Khalel | Henry Ngo | Ryan Thieu | Macros Wofford</strong>
-</footer>
 </html>
