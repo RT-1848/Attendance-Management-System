@@ -72,6 +72,6 @@ function generateClassCode() {
 </body>
 <footer>
     <p>&copy MTSU CSCI 4410 | All Rights Reserved</p>
-    <strong>Youssef Botros | Harry He | Khalid Khalel | Henry Ngo | Ryan Thieu | Macros Wofford</strong>
+    <strong>Youssef Botros | Harry He | Khalid Khalel | Henry Ngo | Ryan Thieu | Marcos Wofford</strong>
 </footer>
 </html> 
