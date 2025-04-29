@@ -46,6 +46,11 @@
         </div>
     </div>
 </body>
+<footer>
+    <p>&copy MTSU CSCI 4410 | All Rights Reserved</p>
+    <strong>Youssef Botros | Harry He | Khalid Khalel | Henry Ngo | Ryan Thieu | Macros Wofford</strong>
+</footer>
+</html>
 
 <style>
     .link-button-container {
@@ -100,6 +105,7 @@
         display: flex;
         flex-wrap: nowrap;           
         justify-content: space-between;
+        min-height: 100vh;
     }
 
     .about-feature-card {
