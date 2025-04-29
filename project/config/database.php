@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost';
+$host = 'database-1.ctuosie4ur9o.us-east-2.rds.amazonaws.com';
 $dbname = 'attendance_tracker';
-$username = 'root';
-$password = '';
+$username = 'admin';
+$password = 'Mtsu1234';
 
 $conn = mysqli_connect($host, $username, $password, $dbname);
 
