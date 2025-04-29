@@ -105,10 +105,6 @@ $firstName = $user['first_name'];
         </div>
     </div>
 </body>
-<footer>
-    <p>&copy MTSU CSCI 4410 | All Rights Reserved</p>
-    <strong>Youssef Botros | Harry He | Khalid Khalel | Henry Ngo | Ryan Thieu | Macros Wofford</strong>
-</footer>
 </html> 
 <?php
 //php block to handle dropping or deleting a class
