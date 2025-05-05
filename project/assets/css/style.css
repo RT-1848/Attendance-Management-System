@@ -539,9 +539,8 @@ a:hover {
 
 #joinClassPage {
     padding: 40px 20px; /* spacing inside the page from all sides */
-    background-color: #f4f8ff; /* Fallback solid color */
-    background: linear-gradient(to bottom right, #e6f0ff, #ffffff); /* Smooth diagonal gradient from light blue to white */
     box-sizing: border-box; /* padding and border is included for the total width and height */
+    height: 100vh;
 }
 
 #joinClassTitle {
